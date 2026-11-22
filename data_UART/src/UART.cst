@@ -1,0 +1,25 @@
+//Copyright (C)2014-2025 Gowin Semiconductor Corporation.
+//All rights reserved. 
+//File Title: Physical Constraints file
+//Tool Version: V1.9.11.03 Education
+//Part Number: GW1NR-LV9QN88PC6/I5
+//Device: GW1NR-9
+//Device Version: C
+//Created Time: Thu 06 18 19:44:07 2026
+
+// 27 MHz onboard oscillator
+IO_LOC "clk" 52;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// reset -> onboard button (S1=3, S2=4); buttons sit on the 1.8V bank
+IO_LOC "rst" 4;
+IO_PORT "rst" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// external trigger -> pick a free GPIO header pin (3.3V bank)
+// external trigger -> onboard button S1
+IO_LOC "trig_inv" 3;
+IO_PORT "trig_inv" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// UART TX to onboard BL702/USB
+IO_LOC "tx" 17;
+IO_PORT "tx" IO_TYPE=LVCMOS33 PULL_MODE=NONE;

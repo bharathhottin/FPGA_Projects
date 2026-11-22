@@ -1,0 +1,18 @@
+// ============================================================
+//  Tang Nano 9K pin constraints for and_gate
+// ------------------------------------------------------------
+//  a -> S1  (push button, pin 4)
+//  b -> S2  (push button, pin 3)
+//  y -> LED0 (pin 10)
+//  All are active-low with internal pull-ups enabled.
+// ============================================================
+
+// --- inputs: push buttons ---
+IO_LOC  "a" 4;
+IO_PORT "a" PULL_MODE=UP;
+IO_LOC  "b" 3;
+IO_PORT "b" PULL_MODE=UP;
+
+// --- output: LED0 ---
+IO_LOC  "y" 10;
+IO_PORT "y" PULL_MODE=UP DRIVE=8;

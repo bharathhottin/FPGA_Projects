@@ -1,0 +1,23 @@
+// ============================================================
+//  Tang Nano 9K  (Gowin GW1NR-9)
+//  Constraints for UartQnA.v   ports: clk, rst, trig_inv, rx, tx
+// ============================================================
+
+// --- 27 MHz system clock ---
+IO_LOC  "clk" 52;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// --- Reset  ->  onboard button S1 (active LOW, matches rst==0) ---
+IO_LOC  "rst" 3;
+
+// --- Optional start/restart  ->  onboard button S2 (active LOW) ---
+IO_LOC  "trig_inv" 4;
+
+// --- UART TX : FPGA -> PC  (to onboard BL702 USB-serial) ---
+IO_LOC  "tx" 17;
+IO_PORT "tx" IO_TYPE=LVCMOS33;
+
+// --- UART RX : PC -> FPGA  (from onboard BL702 USB-serial) ---
+//     PULL_MODE=UP keeps the line idle-high if ever disconnected.
+IO_LOC  "rx" 18;
+IO_PORT "rx" IO_TYPE=LVCMOS33 PULL_MODE=UP;

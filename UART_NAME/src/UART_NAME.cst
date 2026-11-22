@@ -1,0 +1,16 @@
+// 27 MHz onboard oscillator
+IO_LOC "clk" 52;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// reset -> onboard button (S1=3, S2=4); buttons sit on the 1.8V bank
+IO_LOC "rst" 4;
+IO_PORT "rst" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// external trigger -> pick a free GPIO header pin (3.3V bank)
+// external trigger -> onboard button S1
+IO_LOC "trig_inv" 3;
+IO_PORT "trig_inv" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// UART TX to onboard BL702/USB
+IO_LOC "tx" 17;
+IO_PORT "tx" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
