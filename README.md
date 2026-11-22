@@ -74,6 +74,10 @@ A step-by-step collection of Verilog projects built on the **Sipeed Tang Nano 9K
 
 The simplest possible design: `y = a & b`.
 
+<p align="center">
+  <img src="images/flow_1_and_gate.svg" alt="AND gate flow and truth table" width="760">
+</p>
+
 | Signal | Pin | Board connection |
 |---|---|---|
 | `a` | 4 | Push button |
@@ -89,6 +93,10 @@ The simplest possible design: `y = a & b`.
 **Source:** `src/LED.v` · **Constraints:** `src/9K_LED_project.cst`
 
 A single lit LED "runs" across the six LEDs, moving one position every **0.5 s**.
+
+<p align="center">
+  <img src="images/flow_2_running_led.svg" alt="Running LED flow" width="760">
+</p>
 
 - A 24-bit counter counts 13,500,000 cycles of the 27 MHz clock (= 0.5 s).
 - When the count is reached, the LED pattern rotates left: `led <= {led[4:0], led[5]}`.
@@ -111,6 +119,10 @@ A free-running 6-bit counter that increments every 0.5 s and shows its value on 
 
 📹 **Full-quality video:** [`counter/VID20260530185238.mp4`](counter/VID20260530185238.mp4) (stored with Git LFS)
 
+<p align="center">
+  <img src="images/flow_3_counter.svg" alt="6-bit counter flow" width="760">
+</p>
+
 > **Note:** The counter value drives the LEDs directly (`assign led = ledCounter;`). Because the LEDs are active-low, a **lit LED means a 0 bit**. The Count-to-N projects below invert the output so that lit = 1.
 
 ---
@@ -118,6 +130,10 @@ A free-running 6-bit counter that increments every 0.5 s and shows its value on 
 ### 4. Count-to-N Counters · `4_bit-counter/`, `8_bit_counter/`, `16_bit_counter/`
 
 These three designs share the same structure and differ only in where the counter wraps. Each one steps every 0.5 s.
+
+<p align="center">
+  <img src="images/flow_4_count_to_n.svg" alt="Count-to-N counter flow" width="760">
+</p>
 
 | Folder | Count sequence | Counter width | LEDs used |
 |---|---|---|---|
@@ -138,6 +154,10 @@ Highlights:
 
 A 6-bit counter that counts **up from 0 to 63**, turns around, counts **down from 63 to 0**, and repeats.
 
+<p align="center">
+  <img src="images/flow_5_up_down_counter.svg" alt="Up/down counter flow" width="760">
+</p>
+
 - A `countUp` direction flag flips at each end of the range.
 - It steps every 0.5 s.
 - It includes an **SDC timing constraint** that tells the tools the clock is 27 MHz (`create_clock -period 37.037`), so timing analysis is meaningful.
@@ -149,6 +169,10 @@ A 6-bit counter that counts **up from 0 to 63**, turns around, counts **down fro
 **Source:** `src/uart_tx.v` · **Constraints:** `src/UART.cst`
 
 Each press of the trigger button sends a new **pseudo-random 8-bit number** to the PC as two hex characters followed by a newline (for example `B8`, `5C`, `2E` …).
+
+<p align="center">
+  <img src="images/flow_6_uart_random.svg" alt="UART random number data flow" width="760">
+</p>
 
 How it works:
 1. **Edge detector:** the button press is turned into a single one-clock pulse.
@@ -187,6 +211,10 @@ My name is Bharath
 ```
 
 The 20-byte message (including the newline) is stored in a `case`-based lookup function that works like a small ROM. A character index walks through it one byte at a time.
+
+<p align="center">
+  <img src="images/flow_7_uart_name.svg" alt="UART name transmitter flow" width="760">
+</p>
 
 ---
 
@@ -325,7 +353,7 @@ FPGA_Projects/
 ├── UART/UART/             # UART TX: random hex numbers (LFSR)
 ├── UART_NAME/             # UART TX: fixed name message
 ├── data_UART/             # UART TX + RX: interactive Q&A
-└── images/                # Demo GIF and diagrams used in this README
+└── images/                # Demo GIF, flow diagrams and UART diagrams used in this README
 ```
 
 Each project follows the standard Gowin layout:
